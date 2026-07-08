@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="dynamic">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>U.S. Congressional Power Dynamics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+@font-face {
+  font-family: 'TT Norms Pro Serif';
+  src: url('fonts/TT Norms Pro Serif Trial Regular.ttf') format('truetype');
+  font-weight: 400; font-style: normal;
+}
+@font-face {
+  font-family: 'TT Norms Pro Serif';
+  src: url('fonts/TT Norms Pro Serif Trial Medium.ttf') format('truetype');
+  font-weight: 500; font-style: normal;
+}
+@font-face {
+  font-family: 'TT Norms Pro Serif';
+  src: url('fonts/TT Norms Pro Serif Trial DemiBold.ttf') format('truetype');
+  font-weight: 600; font-style: normal;
+}
+@font-face {
+  font-family: 'TT Norms Pro Serif';
+  src: url('fonts/TT Norms Pro Serif Trial Bold.ttf') format('truetype');
+  font-weight: 700; font-style: normal;
+}
+@font-face {
+  font-family: 'TT Norms Pro Serif';
+  src: url('fonts/TT Norms Pro Serif Trial ExtraBold.ttf') format('truetype');
+  font-weight: 800; font-style: normal;
+}
+</style>
+
+<style>
+/* ── Reset ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ══════════════════════════════════════════
+   THEME TOKENS
+   ══════════════════════════════════════════ */
+
+/* Dynamic (default) */
+:root {
+  --page-bg:        transparent;
+  --page-title:     #f2f2f2;
+  --page-sub:       #c8c8c8;
+  --card-bg:        rgba(16,16,16,0.6);
+  --card-border:    #484848;
+  --card-title:     #f2f2f2;
+  --card-sub:       #c8c8c8;
+  --annot-bg:       rgba(255,255,255,0.05);
+  --annot-border:   rgba(255,255,255,0.18);
+  --annot-tag:      #f2f2f2;
+  --annot-text:     #c8c8c8;
+  --arrow-stroke:   #C49A00;
+  --btn-bg:         transparent;
+  --btn-border:     #484848;
+  --btn-text:       #f2f2f2;
+  --dot-base:       #2a2a2a;
+  --dot-stroke-off: #333333;
+  --threshold-line:  rgba(220,220,220,0.5);
+  --threshold-badge: rgba(242,242,242,0.96);
+  --threshold-text:  #5f5f5f;
+  --divider:        #484848;
+  --toggle-bg:      rgba(255,255,255,0.08);
+  --toggle-border:  rgba(255,255,255,0.15);
+  --toggle-text:    #c8c8c8;
+  --toggle-active-bg:   rgba(255,255,255,0.18);
+  --toggle-active-text: #f2f2f2;
+  --status-prev:    #888;
+  --menu-bg:        #1e1e24;
+  --menu-item-inactive: #666666;
+  --menu-item-active:   #f2f2f2;
+}
+
+/* Light */
+[data-mode="light"] {
+  --page-bg:        #ffffff;
+  --page-title:     #101010;
+  --page-sub:       #5f5f5f;
+  --card-bg:        #ffffff;
+  --card-border:    #dcdcdc;
+  --card-title:     #101010;
+  --card-sub:       #5f5f5f;
+  --annot-bg:       #f2f2f2;
+  --annot-border:   #dcdcdc;
+  --annot-tag:      #101010;
+  --annot-text:     #5f5f5f;
+  --arrow-stroke:   #C49A00;
+  --btn-bg:         #ffffff;
+  --btn-border:     #101010;
+  --btn-text:       #181818;
+  --dot-base:       #B8B8B8;
+  --dot-stroke-off: #dcdcdc;
+  --threshold-line:  #dcdcdc;
+  --threshold-badge: #f2f2f2;
+  --threshold-text:  #5f5f5f;
+  --divider:        #dcdcdc;
+  --toggle-bg:      #f2f2f2;
+  --toggle-border:  #dcdcdc;
+  --toggle-text:    #5f5f5f;
+  --toggle-active-bg:   #101010;
+  --toggle-active-text: #ffffff;
+  --status-prev:    #888;
+  --menu-bg:        #f5f5f5;
+  --menu-item-inactive: #999999;
+  --menu-item-active:   #101010;
+}
+
+/* Dark */
+[data-mode="dark"] {
+  --page-bg:        #101010;
+  --page-title:     #f2f2f2;
+  --page-sub:       #c8c8c8;
+  --card-bg:        #212121;
+  --card-border:    #484848;
+  --card-title:     #f2f2f2;
+  --card-sub:       #c8c8c8;
+  --annot-bg:       #333333;
+  --annot-border:   #484848;
+  --annot-tag:      #f2f2f2;
+  --annot-text:     #c8c8c8;
+  --arrow-stroke:   #C49A00;
+  --btn-bg:         transparent;
+  --btn-border:     #484848;
+  --btn-text:       #ffffff;
+  --dot-base:       #2a2a2a;
+  --dot-stroke-off: #333333;
+  --threshold-line:  rgba(220,220,220,0.5);
+  --threshold-badge: rgba(242,242,242,0.96);
+  --threshold-text:  #5f5f5f;
+  --divider:        #484848;
+  --toggle-bg:      rgba(255,255,255,0.08);
+  --toggle-border:  rgba(255,255,255,0.15);
+  --toggle-text:    #c8c8c8;
+  --toggle-active-bg:   rgba(255,255,255,0.18);
+  --toggle-active-text: #f2f2f2;
+  --status-prev:    #888;
+  --menu-bg:        #212121;
+  --menu-item-inactive: #666666;
+  --menu-item-active:   #f2f2f2;
+}
+
+/* ── Base ── */
+html, body { min-height: 100vh; font-family: 'Inter', -apple-system, sans-serif; }
+
+body {
+  background: var(--page-bg);
+  transition: background 0.3s;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ── Capitol background (Dynamic only) ── */
+.bg {
+  position: fixed;
+  inset: 0;
+  background-image: url('bg-capitol.jpg');
+  background-size: cover;
+  background-position: center top;
+  z-index: 0;
+  opacity: 1;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+.bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10,10,16,0.72);
+}
+[data-mode="light"] .bg,
+[data-mode="dark"]  .bg { opacity: 0; }
+
+/* ── Page container ── */
+.page-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Toggle row ── */
+.toggle-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.facts-toggle {
+  background: var(--toggle-bg);
+  border: 1px solid var(--toggle-border);
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--toggle-text);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: background 0.2s, color 0.2s, border-color 0.3s;
+  white-space: nowrap;
+  margin-top: 14px;
+}
+.facts-toggle:hover {
+  background: var(--toggle-active-bg);
+  opacity: 0.8;
+}
+.facts-toggle.is-active {
+  background: var(--toggle-active-bg);
+  color: var(--toggle-active-text);
+  border-color: transparent;
+  opacity: 1;
+}
+
+/* Chamber toggle */
+.chamber-toggle {
+  display: flex;
+  background: var(--toggle-bg);
+  border: 1px solid var(--toggle-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.chamber-btn {
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--toggle-text);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.04em;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.chamber-btn + .chamber-btn {
+  border-left: 1px solid var(--toggle-border);
+}
+.chamber-btn.active {
+  background: var(--toggle-active-bg);
+  color: var(--toggle-active-text);
+}
+.chamber-btn:not(.active):hover {
+  opacity: 0.7;
+}
+
+/* ── Page header row ── */
+.page-header-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+
+.page-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-title {
+  font-family: 'TT Norms Pro Serif', Georgia, serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--page-title);
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  transition: color 0.3s;
+}
+
+.page-subtitle {
+  font-size: 20px;
+  color: var(--page-sub);
+  margin-top: 8px;
+  font-weight: 400;
+  transition: color 0.3s;
+}
+
+/* ── Mode toggle ── */
+.mode-dropdown {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.mode-selected {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--toggle-bg);
+  border: 1px solid var(--toggle-border);
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--toggle-text);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: background 0.2s, border-color 0.3s;
+  white-space: nowrap;
+}
+
+.mode-selected:hover {
+  background: var(--toggle-active-bg);
+  opacity: 0.8;
+}
+
+.mode-chevron {
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.mode-dropdown.open .mode-chevron {
+  transform: rotate(180deg);
+}
+
+.mode-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background: var(--menu-bg);
+  border: 1px solid var(--toggle-border);
+  border-radius: 8px;
+  padding: 6px;
+  min-width: 140px;
+  z-index: 100;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+}
+
+.mode-menu.mode-menu-left {
+  right: auto;
+  left: 0;
+}
+
+.mode-dropdown.open .mode-menu {
+  display: block;
+}
+
+.mode-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--menu-item-inactive);
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.04em;
+  transition: background 0.15s, color 0.15s;
+  user-select: none;
+}
+
+.mode-option:hover {
+  background: var(--toggle-active-bg);
+  opacity: 0.8;
+}
+
+.mode-option input[type="radio"] {
+  accent-color: var(--toggle-active-text);
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.mode-option input[type="radio"]:checked ~ .mode-option-label {
+  color: var(--menu-item-active);
+}
+
+.mode-option:has(input[type="radio"]:checked) {
+  color: var(--menu-item-active);
+}
+
+/* spacer so header is centered even with toggle on the right */
+.header-spacer { width: 180px; flex-shrink: 0; }
+
+/* ── Main layout ── */
+.main {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* ── Annotations ── */
+.annotation {
+  width: 400px;
+  flex-shrink: 0;
+  padding-top: 32px;
+}
+
+.annotation-col-left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-right: 14px;
+}
+
+.annotation-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+}
+
+.annotation-left-bottom {
+  padding-top: 0;
+  margin-top: 200px;
+}
+
+.annotation-right {
+  margin-left: 14px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  padding-top: 200px;
+}
+
+.annotation-box {
+  background: var(--annot-bg);
+  border: 1px solid var(--annot-border);
+  border-radius: 4px;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  transition: background 0.3s, border-color 0.3s;
+  cursor: pointer;
+}
+
+/* Trigger badge — always visible */
+.fact-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.fact-trigger-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--annot-tag);
+  transition: color 0.3s;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fact-trigger-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  position: relative;
+  transition: transform 0.35s ease;
+}
+.fact-trigger-icon::before,
+.fact-trigger-icon::after {
+  content: '';
+  position: absolute;
+  background: var(--arrow-stroke);
+  border-radius: 2px;
+  transition: background 0.3s, transform 0.35s ease;
+}
+.fact-trigger-icon::before { width: 10px; height: 1.5px; top: 8px; left: 4px; }
+.fact-trigger-icon::after  { width: 1.5px; height: 10px; top: 4px; left: 8px; transition: background 0.3s, transform 0.35s ease, opacity 0.35s ease; }
+
+.annotation-box.is-open {
+  border-color: var(--arrow-stroke);
+}
+
+.annotation-box.is-open .fact-trigger-icon::after {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+
+/* Collapsible content area — animates height */
+.fact-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.annotation-box.is-open .fact-content {
+  grid-template-rows: 1fr;
+}
+.fact-content-inner {
+  overflow: hidden;
+}
+.fact-content-body {
+  padding: 0 14px 14px;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s;
+}
+.annotation-box.is-open .fact-content-body {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.annotation-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--annot-tag);
+  margin-bottom: 8px;
+  transition: color 0.3s;
+}
+
+.annotation-text {
+  font-size: 12px;
+  color: var(--annot-text);
+  line-height: 1.65;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+
+/* ── Senate card ── */
+.senate-card {
+  width: 640px;
+  flex-shrink: 0;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.senate-card:hover { opacity: 0.95; }
+
+.card-inner {
+  padding: 40px 40px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+/* ── Card header ── */
+.card-header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+}
+
+.card-title-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card-eyebrow {
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--card-sub);
+  font-weight: 400;
+  transition: color 0.3s;
+}
+
+.card-title {
+  font-family: 'TT Norms Pro Serif', Georgia, serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--card-title);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  transition: color 0.3s;
+}
+
+.card-subtitle {
+  font-size: 16px;
+  color: var(--card-sub);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s;
+}
+
+.card-subtitle .star { font-size: 11px; }
+
+/* ── Annotation toggle (top-left, absolute) ── */
+.annotation-toggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  color: var(--card-sub);
+  font-size: 20px;
+  letter-spacing: 3px;
+  line-height: 1;
+  opacity: 0.45;
+  transition: opacity 0.2s;
+}
+.annotation-toggle:hover { opacity: 1; }
+.annotation-toggle.is-hidden { opacity: 0.25; }
+
+.annotation { visibility: hidden; opacity: 0; pointer-events: none; transition: opacity 0.25s, visibility 0.25s; }
+.annotations-visible .annotation { visibility: visible; opacity: 1; pointer-events: auto; }
+
+
+/* ── Arc section ── */
+.arc-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.arc-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.arc-svg {
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+/* ── Tally overlay ── */
+.tally-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tally-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 8px 12px;
+  min-width: 80px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'TT Norms Pro', Inter, sans-serif;
+  color: #fff;
+  white-space: nowrap;
+  background: #0a0ae9;
+}
+
+/* ── Data display ── */
+.data-display {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0;
+}
+
+.party-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.party-name {
+  font-size: 18px;
+  font-weight: 450;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.party-name.dem { color: #0a0ae9; }
+.party-name.rep { color: #d90911; }
+
+.party-count {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: 'TT Norms Pro Serif', Georgia, serif;
+  line-height: 1;
+}
+
+.party-count.dem { color: #0a0ae9; }
+.party-count.rep { color: #d90911; }
+
+/* Dark/dynamic: party counts use white for legibility */
+:root .party-count,
+[data-mode="dynamic"] .party-count,
+[data-mode="dark"] .party-count { color: #f2f2f2; }
+
+/* Light: party counts use black */
+[data-mode="light"] .party-count { color: #101010; }
+
+.party-status {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  font-size: 16px;
+  color: var(--status-prev);
+  transition: color 0.3s;
+}
+
+.status-arrow-up   { color: #16a34a; font-size: 10px; }
+.status-arrow-down { color: #b91c1c; font-size: 10px; }
+.status-delta-up   { color: #16a34a; }
+.status-delta-down { color: #b91c1c; }
+
+/* ── Legend ── */
+.legend {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  padding: 4px 0;
+}
+
+.legend-item {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--card-sub);
+  font-weight: 400;
+  transition: color 0.3s;
+}
+
+.ldot {
+  width: 14px; height: 14px; border-radius: 50%;
+  display: inline-block; flex-shrink: 0;
+}
+.ldot.dem { background: linear-gradient(180deg, #0A0AE9 0%, #16166B 100%); }
+.ldot.ind { background: linear-gradient(180deg, #EBAD0C 0%, #B15B00 100%); }
+.ldot.rep { background: linear-gradient(180deg, #D90911 0%, #6B1616 100%); }
+
+/* ── Card divider ── */
+/* ── Card banners (top + bottom) ── */
+.card-top-banner {
+  background: linear-gradient(to bottom, #0a0ae9, #16166b);
+  padding: 12px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-top-banner img {
+  height: 12px;
+  width: auto;
+  max-width: 315px;
+  display: block;
+}
+
+.estimates-banner {
+  background: linear-gradient(to bottom, #0a0ae9, #16166b);
+  padding: 12px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: #f2f2f2;
+  font-family: 'TT Norms Pro', Inter, sans-serif;
+  flex-shrink: 0;
+}
+
+/* ── Nav buttons ── */
+.nav-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.nav-btn {
+  background: var(--btn-bg);
+  border: 1px solid var(--btn-border);
+  border-radius: 4px;
+  padding: 10px 28px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--btn-text);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: background 0.2s, border-color 0.2s, color 0.3s;
+  white-space: nowrap;
+}
+
+.nav-btn:hover { opacity: 0.75; }
+
+@media (min-width: 1021px) {
+  .tally-badge { font-size: 16px; }
+}
+
+/* ── Responsive ── */
+/* Wide: annotation-scroll-row is transparent; card sits between col-left and annotation-right via order */
+@media (min-width: 1380px) {
+  .annotation-scroll-row { display: contents; }
+  .senate-card { order: 2; }
+  .annotation-col-left { order: 1; }
+  .annotation-right { order: 3; }
+  .annotation { width: 320px; }
+}
+
+@media (max-width: 1379px) {
+  .main { flex-direction: column; align-items: center; }
+  .senate-card { order: 1; width: min(640px, 100%); }
+  .page-header-row { justify-content: center; flex-wrap: wrap; }
+  .header-spacer { display: none; }
+
+  /* Scroll row: hidden by default, shown when toggle is active */
+  .annotation-scroll-row {
+    order: 2;
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    overflow-x: auto;
+    gap: 12px;
+    padding: 16px 20px 8px;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .annotation-scroll-row::-webkit-scrollbar { display: none; }
+  .annotations-visible .annotation-scroll-row { display: flex; }
+
+  /* annotation-col-left becomes transparent so its children are direct scroll items */
+  .annotation-col-left { display: contents; }
+
+  /* Annotation cards in scroll row are always visible when the row is shown */
+  .annotation-scroll-row .annotation {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    width: 260px;
+    flex-shrink: 0;
+    padding-top: 0;
+  }
+
+  /* Reset flex directions and offsets set for wide layout */
+  .annotation-left,
+  .annotation-right { flex-direction: column; margin: 0; padding-top: 0; }
+  .annotation-left-bottom { margin-top: 0; }
+}
+
+@media (max-width: 660px) {
+  .senate-card { width: 100%; }
+  .annotation { width: 220px; }
+  .card-inner { padding: 24px 20px 20px; }
+  .card-title { font-size: 22px; }
+  .card-eyebrow { font-size: 13px; }
+  .card-subtitle { font-size: 13px; flex-wrap: wrap; justify-content: center; }
+  .card-title-group { padding: 0 48px; }
+  .party-name { font-size: 14px; }
+  .party-count { font-size: 18px; }
+  .party-status { font-size: 12px; }
+  .estimates-banner { font-size: 13px; }
+  .page-title { font-size: 24px; }
+  .page-subtitle { font-size: 16px; }
+  .page-container { padding: 24px 16px 40px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Capitol background (dynamic only) -->
+<div class="bg"></div>
+
+<div class="page-container">
+
+  <!-- ── Toggle row ── -->
+  <div class="toggle-row">
+    <div class="mode-dropdown" id="chamberToggle">
+      <button class="mode-selected" id="chamberSelected" aria-haspopup="listbox" aria-expanded="false">
+        <span class="mode-selected-label" id="chamberLabel">Senate</span>
+        <svg class="mode-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+          <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="mode-menu mode-menu-left" role="listbox">
+        <label class="mode-option">
+          <input type="radio" name="chamber" value="senate" checked>
+          <span class="mode-option-label">Senate</span>
+        </label>
+        <label class="mode-option">
+          <input type="radio" name="chamber" value="house">
+          <span class="mode-option-label">House</span>
+        </label>
+      </div>
+    </div>
+      <div class="mode-dropdown" id="modeToggle">
+        <button class="mode-selected" id="modeSelected" aria-haspopup="listbox" aria-expanded="false">
+          <span class="mode-selected-label" id="modeLabel">Dynamic</span>
+          <svg class="mode-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="mode-menu" role="listbox">
+          <label class="mode-option">
+            <input type="radio" name="mode" value="dynamic" checked>
+            <span class="mode-option-label">Dynamic</span>
+          </label>
+          <label class="mode-option">
+            <input type="radio" name="mode" value="light">
+            <span class="mode-option-label">Light</span>
+          </label>
+          <label class="mode-option">
+            <input type="radio" name="mode" value="dark">
+            <span class="mode-option-label">Dark</span>
+          </label>
+        </div>
+      </div>
+  </div>
+
+  <!-- ── Header row ── -->
+  <div class="page-header-row">
+    <div class="page-header">
+      <h1 class="page-title">U.S. Congressional Power Dynamics</h1>
+      <p class="page-subtitle">Overview of current party control in Congress</p>
+      <button class="facts-toggle" id="annotToggle" onclick="toggleAnnotations()">Show Congress Facts</button>
+    </div>
+  </div>
+
+  <!-- ── Main layout ── -->
+  <div class="main">
+
+    <!-- Senate card -->
+    <div class="senate-card" id="senate-card">
+      <div class="card-top-banner">
+        <img src="banner-logo.svg" alt="CBS News America Decides Election 2026">
+      </div>
+      <div class="card-inner">
+
+        <!-- Header -->
+        <div class="card-header">
+          <div class="card-title-group">
+            <p class="card-eyebrow">Balance of Power</p>
+            <h2 class="card-title" id="card-title">U.S Senate</h2>
+            <p class="card-subtitle" id="card-subtitle">
+              100 Seats <span class="star">★</span> 51 Needed for majority
+            </p>
+          </div>
+        </div>
+
+        <!-- Arc -->
+        <div class="arc-section">
+          <div class="arc-wrap">
+            <svg id="senate-svg" class="arc-svg" viewBox="-45 -198 560 346">
+              <defs>
+                <filter id="sf" x="-80%" y="-80%" width="260%" height="260%">
+                  <feDropShadow dx="0" dy="1" stdDeviation="0.8" flood-color="rgba(0,0,0,0.28)"/>
+                </filter>
+                <linearGradient id="grad-dem" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+                  <stop offset="0" stop-color="#0A0AE9"/>
+                  <stop offset="1" stop-color="#16166B"/>
+                </linearGradient>
+                <linearGradient id="grad-ind" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+                  <stop offset="0" stop-color="#EBAD0C"/>
+                  <stop offset="1" stop-color="#B15B00"/>
+                </linearGradient>
+                <linearGradient id="grad-rep" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+                  <stop offset="0" stop-color="#D90911"/>
+                  <stop offset="1" stop-color="#6B1616"/>
+                </linearGradient>
+              </defs>
+              <!-- Threshold center line (solid) -->
+              <line id="threshold-line"
+                    x1="236.5" y1="-164" x2="236.5" y2="26"
+                    stroke="var(--threshold-line)"
+                    stroke-width="2"/>
+              <!-- Threshold badge -->
+              <rect x="210" y="-197" width="53" height="28" rx="6"
+                    fill="var(--threshold-badge)"/>
+              <text id="threshold-label" x="236.5" y="-178" text-anchor="middle"
+                    font-size="14" font-family="'TT Norms Pro',Inter,sans-serif"
+                    font-weight="600" letter-spacing="0.5"
+                    fill="var(--threshold-text)">51</text>
+              <!-- Downward filled triangle -->
+              <path d="M232,-169 H241 L236.5,-164 Z"
+                    fill="var(--threshold-badge)"/>
+              <!-- Dynamic dots layer -->
+              <g id="dots-layer"></g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Data display -->
+        <div class="data-display">
+          <div class="party-col">
+            <span class="party-name dem">Democratic</span>
+            <span class="party-count dem" id="s-dem">0</span>
+            <div class="party-status">
+              <span id="dem-prev">Prev 47</span>
+              <span class="status-arrow-up" id="dem-arrow">▲</span>
+              <span class="status-delta-up" id="dem-delta">11</span>
+            </div>
+          </div>
+          <div class="tally-col">
+            <div class="tally-badge" id="tally-badge">Dem. +7 Past 51</div>
+          </div>
+          <div class="party-col">
+            <span class="party-name rep">Republican</span>
+            <span class="party-count rep" id="s-rep">0</span>
+            <div class="party-status">
+              <span id="rep-prev">Prev 51</span>
+              <span class="status-arrow-down" id="rep-arrow">▼</span>
+              <span class="status-delta-down" id="rep-delta">11</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+          <div class="legend-item"><span class="ldot dem"></span>Dem</div>
+          <div class="legend-item"><span class="ldot ind"></span>Ind</div>
+          <div class="legend-item"><span class="ldot rep"></span>Rep</div>
+        </div>
+
+      </div><!-- /card-inner -->
+
+      <div class="estimates-banner">
+        <span>CBS NEWS ESTIMATES</span>
+        <span>★</span>
+        <span>MAJORITY DEM</span>
+      </div>
+
+    </div><!-- /senate-card -->
+
+    <!-- Annotation scroll row (wide: display:contents → side columns; narrow: horizontal scroll) -->
+    <div class="annotation-scroll-row">
+
+    <!-- Left annotations column -->
+    <div class="annotation-col-left">
+
+    <!-- Left annotation (top) -->
+    <div class="annotation annotation-left">
+      <div class="annotation-box" id="fact-left">
+        <button class="fact-trigger" onclick="toggleFact('fact-left')" aria-expanded="false">
+          <span class="fact-trigger-label">Battleground States</span>
+          <span class="fact-trigger-icon"></span>
+        </button>
+        <div class="fact-content">
+          <div class="fact-content-inner">
+            <div class="fact-content-body">
+              <p class="annotation-text">In the 2026 elections, key battleground states like Pennsylvania, Arizona, and Georgia will play a pivotal role in determining the balance of power in Congress.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Left annotation (bottom) -->
+    <div class="annotation annotation-left annotation-left-bottom">
+      <div class="annotation-box" id="fact-left-bottom">
+        <button class="fact-trigger" onclick="toggleFact('fact-left-bottom')" aria-expanded="false">
+          <span class="fact-trigger-label">Committee Control</span>
+          <span class="fact-trigger-icon"></span>
+        </button>
+        <div class="fact-content">
+          <div class="fact-content-inner">
+            <div class="fact-content-body">
+              <p class="annotation-text">Senate committee assignments are determined by party leadership after each election. Majority party members chair all committees, giving them significant control over which legislation advances to a floor vote.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div><!-- /annotation-col-left -->
+
+    <!-- Right annotation -->
+    <div class="annotation annotation-right">
+      <div class="annotation-box" id="fact-right">
+        <button class="fact-trigger" onclick="toggleFact('fact-right')" aria-expanded="false">
+          <span class="fact-trigger-label">Voter Turnout</span>
+          <span class="fact-trigger-icon"></span>
+        </button>
+        <div class="fact-content">
+          <div class="fact-content-inner">
+            <div class="fact-content-body">
+              <p class="annotation-text">Additionally, voter turnout in states such as Michigan and Wisconsin is expected to significantly influence Senate races, while demographic shifts in Texas and Florida could impact House seat distributions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div><!-- /annotation-scroll-row -->
+
+  </div><!-- /main -->
+
+  <!-- ── Nav buttons ── -->
+  <div class="nav-buttons">
+    <button class="nav-btn">Explore Elections Page</button>
+    <button class="nav-btn">Latest Political Headlines</button>
+    <button class="nav-btn">Exit Poll</button>
+  </div>
+
+</div><!-- /page-container -->
+
+<script>
+// ─────────────────────────────────────────────────────────────
+// DATA
+// ─────────────────────────────────────────────────────────────
+
+// Senate: 100 seat positions extracted from Figma (cx = seat.x - arc.x + 7.5 - 40, cy = seat.y - arc.y + 7 - 214.3), sorted left→right
+const S_DOTS = [
+  {cx:-31.6,cy:126.3},{cx:-27.8,cy:94.7},{cx:-20.4,cy:63.8},{cx:-9.3,cy:33.9},
+  {cx:4.3,cy:127.2},{cx:5.2,cy:5.7},{cx:8.1,cy:97.6},{cx:15.7,cy:68.8},
+  {cx:23,cy:-20.7},{cx:26.9,cy:41.1},{cx:40.6,cy:127},{cx:41.6,cy:15.1},
+  {cx:43.7,cy:-44.8},{cx:45.3,cy:97.2},{cx:54.4,cy:68.4},{cx:59.5,cy:-8.8},
+  {cx:67.2,cy:-66.3},{cx:67.9,cy:41.3},{cx:77.2,cy:126.8},{cx:80.2,cy:-30.2},
+  {cx:83.1,cy:96.6},{cx:85.4,cy:16.7},{cx:93,cy:-84.8},{cx:94.6,cy:68.1},
+  {cx:103.6,cy:-48.8},{cx:106.4,cy:-5},{cx:111.4,cy:42.3},{cx:114,cy:128.6},
+  {cx:119.9,cy:102.2},{cx:120.9,cy:-100.2},{cx:129.1,cy:-64.2},{cx:130.6,cy:-23.2},
+  {cx:131.4,cy:77.8},{cx:132.9,cy:20.2},{cx:148,cy:56.4},{cx:150.4,cy:-112.2},
+  {cx:156.4,cy:-76.2},{cx:157.2,cy:-37.5},{cx:158.1,cy:2.7},{cx:168.9,cy:39.2},
+  {cx:181,cy:-120.6},{cx:185.1,cy:-84.7},{cx:185.7,cy:-47.5},{cx:186.3,cy:-9.7},
+  {cx:193,cy:26.9},{cx:212.5,cy:-125.3},{cx:214.5,cy:-89.4},{cx:215.4,cy:-53.1},
+  {cx:216.3,cy:-16.5},{cx:219.2,cy:20.2},{cx:255.8,cy:20.5},{cx:256.6,cy:-16.5},
+  {cx:257.4,cy:-53.1},{cx:258.3,cy:-89.4},{cx:259.2,cy:-125.4},{cx:286.1,cy:29.5},
+  {cx:286.6,cy:-9.7},{cx:287.1,cy:-47.5},{cx:287.8,cy:-84.7},{cx:288.5,cy:-121.2},
+  {cx:313.1,cy:45.8},{cx:314.7,cy:2.7},{cx:315.6,cy:-37.5},{cx:316.4,cy:-76.2},
+  {cx:317.1,cy:-113.9},{cx:335,cy:68.4},{cx:340,cy:20.2},{cx:342.3,cy:-23.2},
+  {cx:343.7,cy:-64.2},{cx:344.7,cy:-103.5},{cx:350.5,cy:95.9},{cx:358.6,cy:126.4},
+  {cx:361.4,cy:42.3},{cx:366.4,cy:-5},{cx:369.2,cy:-48.8},{cx:371,cy:-90.1},
+  {cx:378.2,cy:68.1},{cx:387.4,cy:16.7},{cx:389.7,cy:96.6},{cx:392.6,cy:-30.2},
+  {cx:395.6,cy:126.8},{cx:395.7,cy:-73.9},{cx:404.9,cy:41.3},{cx:413.4,cy:-8.8},
+  {cx:418.4,cy:68.4},{cx:418.5,cy:-55.1},{cx:427.5,cy:97.2},{cx:431.2,cy:15.1},
+  {cx:432.2,cy:127},{cx:439.1,cy:-33.9},{cx:445.9,cy:41.1},{cx:457.1,cy:68.8},
+  {cx:457.2,cy:-10.6},{cx:464.7,cy:97.6},{cx:468.5,cy:127.2},{cx:472.6,cy:14.6},
+  {cx:485.2,cy:41.3},{cx:494.8,cy:69.2},{cx:501.2,cy:98},{cx:504.5,cy:127.4},
+];
+
+const S_DEM = 58, S_IND = 2, S_REP = 40;
+const S_CX  = 236, S_CY = 128, S_R  = 7;
+
+// ─────────────────────────────────────────────────────────────
+// CENTER-PINNED PARTY ASSIGNMENT
+// ─────────────────────────────────────────────────────────────
+function getParty(i, total, dem, ind) {
+  // left-based: DEM fills from left, IND immediately after, REP fills right
+  if (i < dem) return 'dem';
+  if (i < dem + ind) return 'ind';
+  return 'rep';
+}
+
+// ─────────────────────────────────────────────────────────────
+// PARTY COLORS
+// ─────────────────────────────────────────────────────────────
+const PARTY_FILL = {
+  dem: 'url(#grad-dem)',
+  ind: 'url(#grad-ind)',
+  rep: 'url(#grad-rep)',
+};
+const PARTY_STROKE_LIT = {
+  dem: 'rgba(255,255,255,0.3)',
+  ind: 'rgba(255,255,255,0.3)',
+  rep: 'rgba(255,255,255,0.3)',
+};
+
+// ─────────────────────────────────────────────────────────────
+// ANIMATION CONFIG
+// ─────────────────────────────────────────────────────────────
+const SWEEP = 1.55;
+const TRANS = 0.38;
+const NS    = 'http://www.w3.org/2000/svg';
+
+function sweepDelay(cx, cy, arcCX, arcCY) {
+  const angle = Math.atan2(arcCY - cy, cx - arcCX);
+  const dist  = Math.abs(angle - Math.PI / 2) / (Math.PI / 2);
+  return dist * SWEEP;
+}
+
+const S_DELAYS = S_DOTS.map(p => sweepDelay(p.cx, p.cy, S_CX, S_CY));
+
+// ─────────────────────────────────────────────────────────────
+// BUILD SVG DOTS
+// Returns { fills, strokes, bases, parties }
+// ─────────────────────────────────────────────────────────────
+function buildDots(layer, dots, delays, demCount, indCount, repCount, r) {
+  const total   = dots.length;
+  const fills   = [];
+  const strokes = [];
+  const bases   = [];
+  const parties = [];
+
+  dots.forEach((pos, i) => {
+    const party = getParty(i, total, demCount, indCount);
+    parties.push(party);
+
+    const g = document.createElementNS(NS, 'g');
+
+    const base = document.createElementNS(NS, 'circle');
+    base.setAttribute('cx', pos.cx);
+    base.setAttribute('cy', pos.cy);
+    base.setAttribute('r',  r);
+    base.style.fill = 'var(--dot-base)';
+    base.setAttribute('filter', 'url(#sf)');
+
+    const fill = document.createElementNS(NS, 'circle');
+    fill.setAttribute('cx', pos.cx);
+    fill.setAttribute('cy', pos.cy);
+    fill.setAttribute('r',  r);
+    fill.setAttribute('fill', PARTY_FILL[party]);
+    fill.setAttribute('opacity', '0');
+    fill.style.transitionProperty       = 'opacity';
+    fill.style.transitionDuration       = `${TRANS}s`;
+    fill.style.transitionTimingFunction = 'ease-out';
+    fill.style.transitionDelay          = `${delays[i].toFixed(3)}s`;
+
+    const stroke = document.createElementNS(NS, 'circle');
+    stroke.setAttribute('cx', pos.cx);
+    stroke.setAttribute('cy', pos.cy);
+    stroke.setAttribute('r',  r - 0.5);
+    stroke.setAttribute('fill',         'none');
+    stroke.setAttribute('stroke-width', '1');
+    stroke.style.stroke                   = 'var(--dot-stroke-off)';
+    stroke.style.transitionProperty       = 'stroke';
+    stroke.style.transitionDuration       = `${TRANS}s`;
+    stroke.style.transitionTimingFunction = 'ease-out';
+    stroke.style.transitionDelay          = `${delays[i].toFixed(3)}s`;
+
+    g.appendChild(base);
+    g.appendChild(fill);
+    g.appendChild(stroke);
+    layer.appendChild(g);
+    fills.push(fill);
+    strokes.push(stroke);
+    bases.push(base);
+  });
+
+  return { fills, strokes, bases, parties };
+}
+
+// ─────────────────────────────────────────────────────────────
+// HOUSE ARC GENERATION
+// ─────────────────────────────────────────────────────────────
+function generateArcDots(cx, cy, rowRadii, seatsPerRow) {
+  // Center gap creates V-split at threshold (like Senate).
+  // Each row: ceil(n/2) left half, floor(n/2) right half, evenly spaced.
+  const GAP  = 0.10;
+  const HALF = Math.PI / 2 - GAP; // usable span each side
+
+  const dots = [];
+  rowRadii.forEach((r, ri) => {
+    const n      = seatsPerRow[ri];
+    const leftN  = Math.ceil(n / 2);
+    const rightN = Math.floor(n / 2);
+
+    // Left: evenly spaced from π (outermost) down to π/2+GAP (center-adjacent)
+    for (let j = 0; j < leftN; j++) {
+      const angle = leftN > 1 ? Math.PI - j * HALF / (leftN - 1) : Math.PI;
+      dots.push({ cx: cx + r * Math.cos(angle), cy: cy - r * Math.sin(angle) });
+    }
+    // Right: evenly spaced from π/2-GAP (center-adjacent) down to 0 (outermost)
+    for (let j = 0; j < rightN; j++) {
+      const angle = rightN > 1 ? (Math.PI / 2 - GAP) * (rightN - 1 - j) / (rightN - 1) : Math.PI / 2 - GAP;
+      dots.push({ cx: cx + r * Math.cos(angle), cy: cy - r * Math.sin(angle) });
+    }
+  });
+  return dots;
+}
+
+const H_CX = 236, H_CY = 128, H_R = 4.5;
+const H_DEM = 265, H_IND = 2, H_REP = 168;
+const H_ROW_RADII     = [ 90, 108, 126, 144, 162, 180, 198, 216, 234, 252];
+// Exactly 1 odd-seat row (65) → ceil sums = 218, floor sums = 217
+const H_SEATS_PER_ROW = [ 22,  28,  32,  36,  42,  46,  50,  54,  60,  65];
+const H_DOTS = generateArcDots(H_CX, H_CY, H_ROW_RADII, H_SEATS_PER_ROW)
+  .sort((a, b) => {
+    const angA = Math.atan2(-(a.cy - H_CY), a.cx - H_CX);
+    const angB = Math.atan2(-(b.cy - H_CY), b.cx - H_CX);
+    return angB - angA;
+  });
+const H_DELAYS = H_DOTS.map(p => sweepDelay(p.cx, p.cy, H_CX, H_CY));
+
+// ─────────────────────────────────────────────────────────────
+// CHAMBER DATA
+// ─────────────────────────────────────────────────────────────
+const CHAMBERS = {
+  senate: {
+    title: 'U.S Senate',
+    subtitle: '100 Seats <span class="star">★</span> 51 Needed for majority',
+    threshold: 51, thresholdY2: 26,
+    dem: S_DEM, ind: S_IND, rep: S_REP,
+    demPrev: 47, demDelta: 11, demDir: 'up',
+    repPrev: 51, repDelta: 11, repDir: 'down',
+    dots: S_DOTS, delays: S_DELAYS, r: S_R,
+  },
+  house: {
+    title: 'U.S House',
+    subtitle: '435 Seats <span class="star">★</span> 218 Needed for majority',
+    threshold: 218, thresholdY2: 43,
+    dem: H_DEM, ind: H_IND, rep: H_REP,
+    demPrev: 213, demDelta: 52, demDir: 'up',
+    repPrev: 243, repDelta: 52, repDir: 'down',
+    dots: H_DOTS, delays: H_DELAYS, r: H_R,
+  },
+};
+
+let currentChamber = 'senate';
+const dotsLayer = document.getElementById('dots-layer');
+let currentDots = buildDots(dotsLayer, S_DOTS, S_DELAYS, S_DEM, S_IND, S_REP, S_R);
+
+// ─────────────────────────────────────────────────────────────
+// SWEEP ANIMATION
+// ─────────────────────────────────────────────────────────────
+function sweepIn(fills, strokes, delays, parties) {
+  fills.forEach((f, i) => {
+    f.style.transitionDuration = `${TRANS}s`;
+    f.style.transitionDelay    = `${delays[i].toFixed(3)}s`;
+    f.setAttribute('opacity', '1');
+
+    strokes[i].style.transitionDuration = `${TRANS}s`;
+    strokes[i].style.transitionDelay    = `${delays[i].toFixed(3)}s`;
+    strokes[i].style.stroke = PARTY_STROKE_LIT[parties[i]];
+  });
+}
+
+function sweepOut(fills, strokes) {
+  fills.forEach((f, i) => {
+    f.style.transitionDuration = '0.15s';
+    f.style.transitionDelay    = '0s';
+    f.setAttribute('opacity', '0');
+
+    strokes[i].style.transitionDuration = '0.15s';
+    strokes[i].style.transitionDelay    = '0s';
+    strokes[i].style.stroke = 'var(--dot-stroke-off)';
+  });
+}
+
+// ─────────────────────────────────────────────────────────────
+// COUNTER ANIMATION
+// ─────────────────────────────────────────────────────────────
+let cRAF = null;
+
+function animateCounters(startDelay, demTarget, repTarget) {
+  if (cRAF) cancelAnimationFrame(cRAF);
+  const totalMs = (SWEEP + TRANS) * 1000;
+  let t0 = null;
+
+  ['s-dem', 's-rep'].forEach(id => {
+    document.getElementById(id).textContent = '0';
+  });
+
+  function tick(ts) {
+    if (!t0) t0 = ts;
+    const elapsed = ts - t0 - startDelay;
+    if (elapsed < 0) { cRAF = requestAnimationFrame(tick); return; }
+    const p = Math.min(elapsed / totalMs, 1);
+    const e = 1 - Math.pow(1 - p, 2.6);
+
+    document.getElementById('s-dem').textContent   = Math.round(e * demTarget);
+    document.getElementById('s-rep').textContent   = Math.round(e * repTarget);
+
+    if (p < 1) cRAF = requestAnimationFrame(tick);
+  }
+  cRAF = requestAnimationFrame(tick);
+}
+
+// ─────────────────────────────────────────────────────────────
+// PLAY / REPLAY
+// ─────────────────────────────────────────────────────────────
+function play() {
+  const data = CHAMBERS[currentChamber];
+  sweepOut(currentDots.fills, currentDots.strokes);
+  setTimeout(() => {
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      sweepIn(currentDots.fills, currentDots.strokes, data.delays, currentDots.parties);
+    }));
+  }, 200);
+  animateCounters(200, data.dem, data.rep);
+}
+
+function switchChamber(name) {
+  if (name === currentChamber) return;
+  currentChamber = name;
+  const data = CHAMBERS[name];
+
+  // Update card header
+  document.getElementById('card-title').textContent = data.title;
+  document.getElementById('card-subtitle').innerHTML = data.subtitle;
+  document.getElementById('threshold-label').textContent = data.threshold;
+  document.getElementById('tally-badge').textContent = `Dem. +${data.dem - data.threshold} Past ${data.threshold}`;
+  document.getElementById('threshold-line').setAttribute('y2', data.thresholdY2);
+
+  // Update party status rows
+  document.getElementById('dem-prev').textContent  = `Prev ${data.demPrev}`;
+  document.getElementById('dem-delta').textContent = data.demDelta;
+  document.getElementById('rep-prev').textContent  = `Prev ${data.repPrev}`;
+  document.getElementById('rep-delta').textContent = data.repDelta;
+
+  // Update chamber dropdown label
+  document.getElementById('chamberLabel').textContent = data.title.replace('U.S ', '');
+
+  // Clear dots layer and rebuild
+  while (dotsLayer.firstChild) dotsLayer.removeChild(dotsLayer.firstChild);
+  currentDots = buildDots(dotsLayer, data.dots, data.delays, data.dem, data.ind, data.rep, data.r);
+
+  play();
+}
+
+document.getElementById('senate-card').addEventListener('click', play);
+setTimeout(play, 400);
+
+// ─────────────────────────────────────────────────────────────
+// MODE TOGGLE
+// ─────────────────────────────────────────────────────────────
+function toggleAnnotations() {
+  const main = document.querySelector('.main');
+  const btn = document.getElementById('annotToggle');
+  const shown = main.classList.toggle('annotations-visible');
+  btn.classList.toggle('is-active', shown);
+  btn.textContent = shown ? 'Hide Congress Facts' : 'Show Congress Facts';
+}
+
+function toggleFact(id) {
+  const box = document.getElementById(id);
+  const btn = box.querySelector('.fact-trigger');
+  const isOpen = box.classList.toggle('is-open');
+  btn.setAttribute('aria-expanded', isOpen);
+}
+
+const chamberDropdown = document.getElementById('chamberToggle');
+const chamberSelectedBtn = document.getElementById('chamberSelected');
+
+chamberSelectedBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  const open = chamberDropdown.classList.toggle('open');
+  chamberSelectedBtn.setAttribute('aria-expanded', open);
+  if (open) { modeDropdown.classList.remove('open'); modeSelectedBtn.setAttribute('aria-expanded', 'false'); }
+});
+
+chamberDropdown.querySelectorAll('input[type="radio"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    switchChamber(radio.value);
+    chamberDropdown.classList.remove('open');
+    chamberSelectedBtn.setAttribute('aria-expanded', 'false');
+  });
+});
+
+document.addEventListener('click', e => {
+  if (!chamberDropdown.contains(e.target)) {
+    chamberDropdown.classList.remove('open');
+    chamberSelectedBtn.setAttribute('aria-expanded', 'false');
+  }
+});
+
+const modeDropdown = document.getElementById('modeToggle');
+const modeSelectedBtn = document.getElementById('modeSelected');
+const modeLabelEl = document.getElementById('modeLabel');
+
+modeSelectedBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  const open = modeDropdown.classList.toggle('open');
+  modeSelectedBtn.setAttribute('aria-expanded', open);
+});
+
+document.addEventListener('click', e => {
+  if (!modeDropdown.contains(e.target)) {
+    modeDropdown.classList.remove('open');
+    modeSelectedBtn.setAttribute('aria-expanded', 'false');
+  }
+});
+
+modeDropdown.querySelectorAll('input[type="radio"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    document.documentElement.dataset.mode = radio.value;
+    modeLabelEl.textContent = radio.value.charAt(0).toUpperCase() + radio.value.slice(1);
+    modeDropdown.classList.remove('open');
+    modeSelectedBtn.setAttribute('aria-expanded', 'false');
+  });
+});
+</script>
+</body>
+</html>
