@@ -6,6 +6,7 @@
 <title>U.S. Congressional Power Dynamics</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
 <style>
 @font-face {
   font-family: 'TT Norms Pro Serif';
@@ -151,7 +152,7 @@ body {
   background: var(--page-bg);
   transition: background 0.3s;
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* ── Capitol background (Dynamic only) ── */
@@ -197,11 +198,14 @@ body {
   margin-bottom: 16px;
 }
 
-.facts-toggle {
+.facts-icon-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   background: var(--toggle-bg);
   border: 1px solid var(--toggle-border);
   border-radius: 8px;
-  padding: 7px 14px;
+  padding: 7px 12px;
   font-size: 12px;
   font-weight: 600;
   color: var(--toggle-text);
@@ -210,17 +214,15 @@ body {
   font-family: 'Inter', sans-serif;
   transition: background 0.2s, color 0.2s, border-color 0.3s;
   white-space: nowrap;
-  margin-top: 14px;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
-.facts-toggle:hover {
-  background: var(--toggle-active-bg);
-  opacity: 0.8;
-}
-.facts-toggle.is-active {
+.facts-icon-btn i { font-size: 14px; }
+.facts-icon-btn:hover { background: var(--toggle-active-bg); opacity: 0.8; }
+.facts-icon-btn.is-active {
   background: var(--toggle-active-bg);
   color: var(--toggle-active-text);
   border-color: transparent;
-  opacity: 1;
 }
 
 /* Chamber toggle */
@@ -268,6 +270,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: fade-up 0.5s ease both;
 }
 
 .page-title {
@@ -542,6 +545,22 @@ body {
 }
 
 
+/* ── Entrance animations ── */
+@keyframes card-enter {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes badge-pop {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.12); }
+  70%  { transform: scale(0.96); }
+  100% { transform: scale(1); }
+}
+
 /* ── Senate card ── */
 .senate-card {
   width: 640px;
@@ -552,6 +571,7 @@ body {
   overflow: hidden;
   cursor: pointer;
   transition: background 0.3s, border-color 0.3s;
+  animation: card-enter 0.6s cubic-bezier(0.22, 1, 0.36, 1) both 0.1s;
 }
 
 .senate-card:hover { opacity: 0.95; }
@@ -665,6 +685,8 @@ body {
   justify-content: center;
   flex-shrink: 0;
 }
+
+.tally-badge.pop { animation: badge-pop 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
 
 .tally-badge {
   display: inline-flex;
@@ -827,6 +849,7 @@ body {
 
 @media (min-width: 1021px) {
   .tally-badge { font-size: 16px; }
+  .card-top-banner img { height: 18px; }
 }
 
 /* ── Responsive ── */
@@ -844,8 +867,9 @@ body {
   .senate-card { order: 1; width: min(640px, 100%); }
   .page-header-row { justify-content: center; flex-wrap: wrap; }
   .header-spacer { display: none; }
+  .card-title-group { gap: 8px; }
 
-  /* Scroll row: hidden by default, shown when toggle is active */
+  /* Scroll row: hidden by default, JS drives display; CSS drives the fade+slide */
   .annotation-scroll-row {
     order: 2;
     display: none;
@@ -858,23 +882,35 @@ body {
     box-sizing: border-box;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .annotation-scroll-row::-webkit-scrollbar { display: none; }
-  .annotations-visible .annotation-scroll-row { display: flex; }
+  .annotation-scroll-row.slide-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
   /* annotation-col-left becomes transparent so its children are direct scroll items */
   .annotation-col-left { display: contents; }
 
-  /* Annotation cards in scroll row are always visible when the row is shown */
+  /* Annotation cards slide up with stagger */
   .annotation-scroll-row .annotation {
     display: block;
     visibility: visible;
-    opacity: 1;
+    opacity: 0;
     pointer-events: auto;
     width: 260px;
     flex-shrink: 0;
     padding-top: 0;
+    transform: translateY(14px);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s;
   }
+  .annotations-visible .annotation-scroll-row .annotation { opacity: 1; transform: translateY(0); }
+  .annotations-visible .annotation-scroll-row .annotation:nth-child(1) { transition-delay: 0.1s; }
+  .annotations-visible .annotation-scroll-row .annotation:nth-child(2) { transition-delay: 0.17s; }
+  .annotations-visible .annotation-scroll-row .annotation:nth-child(3) { transition-delay: 0.24s; }
 
   /* Reset flex directions and offsets set for wide layout */
   .annotation-left,
@@ -882,10 +918,15 @@ body {
   .annotation-left-bottom { margin-top: 0; }
 }
 
+@media (max-width: 900px) {
+  .page-title { font-size: 24px; }
+  .page-header-row { margin-top: 16px; }
+}
+
 @media (max-width: 660px) {
   .senate-card { width: 100%; }
   .annotation { width: 220px; }
-  .card-inner { padding: 24px 20px 20px; }
+  .card-inner { padding: 16px 20px 16px; gap: 16px; }
   .card-title { font-size: 22px; }
   .card-eyebrow { font-size: 13px; }
   .card-subtitle { font-size: 13px; flex-wrap: wrap; justify-content: center; }
@@ -894,9 +935,13 @@ body {
   .party-count { font-size: 18px; }
   .party-status { font-size: 12px; }
   .estimates-banner { font-size: 13px; }
-  .page-title { font-size: 24px; }
-  .page-subtitle { font-size: 16px; }
-  .page-container { padding: 24px 16px 40px; }
+  .page-title { font-size: 20px; }
+  .page-subtitle { display: none; }
+  .page-container { padding: 12px 16px 16px; }
+  .toggle-row { margin-bottom: 8px; }
+  .page-header-row { margin-top: 12px; margin-bottom: 16px; }
+  .nav-buttons { margin-top: 12px; gap: 8px; }
+  .nav-btn { padding: 8px 20px; font-size: 12px; }
 }
 </style>
 </head>
@@ -927,6 +972,8 @@ body {
         </label>
       </div>
     </div>
+      <div style="display:flex;gap:8px;align-items:center;">
+      <button class="facts-icon-btn" id="annotToggle" onclick="toggleAnnotations()" aria-label="Show congress facts"><i class="ti ti-info-circle" aria-hidden="true"></i>Facts</button>
       <div class="mode-dropdown" id="modeToggle">
         <button class="mode-selected" id="modeSelected" aria-haspopup="listbox" aria-expanded="false">
           <span class="mode-selected-label" id="modeLabel">Dynamic</span>
@@ -949,6 +996,7 @@ body {
           </label>
         </div>
       </div>
+      </div>
   </div>
 
   <!-- ── Header row ── -->
@@ -956,7 +1004,6 @@ body {
     <div class="page-header">
       <h1 class="page-title">U.S. Congressional Power Dynamics</h1>
       <p class="page-subtitle">Overview of current party control in Congress</p>
-      <button class="facts-toggle" id="annotToggle" onclick="toggleAnnotations()">Show Congress Facts</button>
     </div>
   </div>
 
@@ -1421,7 +1468,11 @@ function switchChamber(name) {
   document.getElementById('card-title').textContent = data.title;
   document.getElementById('card-subtitle').innerHTML = data.subtitle;
   document.getElementById('threshold-label').textContent = data.threshold;
-  document.getElementById('tally-badge').textContent = `Dem. +${data.dem - data.threshold} Past ${data.threshold}`;
+  const badge = document.getElementById('tally-badge');
+  badge.textContent = `Dem. +${data.dem - data.threshold} Past ${data.threshold}`;
+  badge.classList.remove('pop');
+  void badge.offsetWidth;
+  badge.classList.add('pop');
   document.getElementById('threshold-line').setAttribute('y2', data.thresholdY2);
 
   // Update party status rows
@@ -1449,9 +1500,33 @@ setTimeout(play, 400);
 function toggleAnnotations() {
   const main = document.querySelector('.main');
   const btn = document.getElementById('annotToggle');
+  const row = document.querySelector('.annotation-scroll-row');
   const shown = main.classList.toggle('annotations-visible');
   btn.classList.toggle('is-active', shown);
-  btn.textContent = shown ? 'Hide Congress Facts' : 'Show Congress Facts';
+  btn.setAttribute('aria-label', shown ? 'Hide congress facts' : 'Show congress facts');
+
+  if (window.innerWidth <= 1379) {
+    const cards = [...row.querySelectorAll('.annotation')];
+    if (shown) {
+      row.style.cssText = 'display:flex;opacity:0;transform:translateY(-10px);transition:none;';
+      cards.forEach(c => { c.style.cssText = 'opacity:0;transform:translateY(12px);transition:none;visibility:visible;'; });
+      setTimeout(() => {
+        row.style.transition = 'opacity 0.35s ease, transform 0.4s cubic-bezier(0.22,1,0.36,1)';
+        row.style.opacity = '1';
+        row.style.transform = 'translateY(0)';
+        cards.forEach((c, i) => {
+          c.style.transition = `opacity 0.35s ${0.08 + i * 0.07}s, transform 0.4s cubic-bezier(0.22,1,0.36,1) ${0.08 + i * 0.07}s`;
+          c.style.opacity = '1';
+          c.style.transform = 'translateY(0)';
+        });
+      }, 20);
+    } else {
+      row.style.transition = 'opacity 0.3s ease, transform 0.35s ease';
+      row.style.opacity = '0';
+      row.style.transform = 'translateY(-10px)';
+      setTimeout(() => { if (!main.classList.contains('annotations-visible')) row.style.display = 'none'; }, 350);
+    }
+  }
 }
 
 function toggleFact(id) {
