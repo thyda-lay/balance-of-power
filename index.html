@@ -288,104 +288,81 @@ body {
   transition: color 0.3s;
 }
 
-/* ── Mode toggle ── */
-.mode-dropdown {
+/* ── Segmented control (chamber) ── */
+.seg-control {
   position: relative;
-  flex-shrink: 0;
-}
-
-.mode-selected {
   display: flex;
   align-items: center;
-  gap: 8px;
   background: var(--toggle-bg);
   border: 1px solid var(--toggle-border);
   border-radius: 8px;
-  padding: 7px 12px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--toggle-text);
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  transition: background 0.2s, border-color 0.3s;
-  white-space: nowrap;
-}
-
-.mode-selected:hover {
-  background: var(--toggle-active-bg);
-  opacity: 0.8;
-}
-
-.mode-chevron {
-  transition: transform 0.2s;
+  padding: 3px;
   flex-shrink: 0;
 }
 
-.mode-dropdown.open .mode-chevron {
-  transform: rotate(180deg);
-}
-
-.mode-menu {
-  display: none;
+.seg-pill {
   position: absolute;
-  top: calc(100% + 6px);
-  right: 0;
-  background: var(--menu-bg);
-  border: 1px solid var(--toggle-border);
-  border-radius: 8px;
-  padding: 6px;
-  min-width: 140px;
-  z-index: 100;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  background: var(--toggle-active-bg);
+  border-radius: 5px;
+  top: 3px;
+  height: calc(100% - 6px);
+  transition: left 0.22s cubic-bezier(0.4,0,0.2,1), width 0.22s cubic-bezier(0.4,0,0.2,1);
+  pointer-events: none;
 }
 
-.mode-menu.mode-menu-left {
-  right: auto;
-  left: 0;
+.seg-btn {
+  position: relative;
+  z-index: 1;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-family: 'Inter', sans-serif;
+  color: var(--toggle-text);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: color 0.2s;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
+.seg-btn.active { color: var(--toggle-active-text); }
+.seg-btn:not(.active):hover { opacity: 0.7; }
 
-.mode-dropdown.open .mode-menu {
-  display: block;
-}
-
-.mode-option {
+/* ── Icon-only mode toggle ── */
+.icon-toggle {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 8px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--menu-item-inactive);
-  font-family: 'Inter', sans-serif;
-  letter-spacing: 0.04em;
-  transition: background 0.15s, color 0.15s;
-  user-select: none;
-}
-
-.mode-option:hover {
-  background: var(--toggle-active-bg);
-  opacity: 0.8;
-}
-
-.mode-option input[type="radio"] {
-  accent-color: var(--toggle-active-text);
-  width: 14px;
-  height: 14px;
-  cursor: pointer;
+  background: var(--toggle-bg);
+  border: 1px solid var(--toggle-border);
+  border-radius: 8px;
+  padding: 3px;
   flex-shrink: 0;
-  margin: 0;
 }
 
-.mode-option input[type="radio"]:checked ~ .mode-option-label {
-  color: var(--menu-item-active);
+.icon-toggle-btn {
+  position: relative;
+  z-index: 1;
+  width: 30px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--toggle-text);
+  font-size: 16px;
+  transition: color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
-
-.mode-option:has(input[type="radio"]:checked) {
-  color: var(--menu-item-active);
-}
+.icon-toggle-btn.active { color: var(--toggle-active-text); }
+.icon-toggle-btn:not(.active):hover { opacity: 0.7; }
 
 /* spacer so header is centered even with toggle on the right */
 .header-spacer { width: 180px; flex-shrink: 0; }
@@ -951,49 +928,20 @@ body {
 
   <!-- ── Toggle row ── -->
   <div class="toggle-row">
-    <div class="mode-dropdown" id="chamberToggle">
-      <button class="mode-selected" id="chamberSelected" aria-haspopup="listbox" aria-expanded="false">
-        <span class="mode-selected-label" id="chamberLabel">Senate</span>
-        <svg class="mode-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
-          <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-      <div class="mode-menu mode-menu-left" role="listbox">
-        <label class="mode-option">
-          <input type="radio" name="chamber" value="senate" checked>
-          <span class="mode-option-label">Senate</span>
-        </label>
-        <label class="mode-option">
-          <input type="radio" name="chamber" value="house">
-          <span class="mode-option-label">House</span>
-        </label>
+    <div class="seg-control" id="chamberToggle">
+      <div class="seg-pill" id="chamberPill"></div>
+      <button class="seg-btn active" data-chamber="senate">Senate</button>
+      <button class="seg-btn" data-chamber="house">House</button>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button class="facts-icon-btn" id="annotToggle" onclick="toggleAnnotations()" aria-label="Show congress facts"><i class="ti ti-info-circle" aria-hidden="true"></i></button>
+      <div class="icon-toggle" id="modeToggle">
+        <div class="seg-pill" id="modePill"></div>
+        <button class="icon-toggle-btn active" data-mode="dynamic" aria-label="Dynamic mode" title="Dynamic"><i class="ti ti-circle-half-2" aria-hidden="true"></i></button>
+        <button class="icon-toggle-btn" data-mode="light" aria-label="Light mode" title="Light"><i class="ti ti-sun" aria-hidden="true"></i></button>
+        <button class="icon-toggle-btn" data-mode="dark" aria-label="Dark mode" title="Dark"><i class="ti ti-moon" aria-hidden="true"></i></button>
       </div>
     </div>
-      <div style="display:flex;gap:8px;align-items:center;">
-      <button class="facts-icon-btn" id="annotToggle" onclick="toggleAnnotations()" aria-label="Show congress facts"><i class="ti ti-info-circle" aria-hidden="true"></i></button>
-      <div class="mode-dropdown" id="modeToggle">
-        <button class="mode-selected" id="modeSelected" aria-haspopup="listbox" aria-expanded="false">
-          <span class="mode-selected-label" id="modeLabel">Dynamic</span>
-          <svg class="mode-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
-            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <div class="mode-menu" role="listbox">
-          <label class="mode-option">
-            <input type="radio" name="mode" value="dynamic" checked>
-            <span class="mode-option-label">Dynamic</span>
-          </label>
-          <label class="mode-option">
-            <input type="radio" name="mode" value="light">
-            <span class="mode-option-label">Light</span>
-          </label>
-          <label class="mode-option">
-            <input type="radio" name="mode" value="dark">
-            <span class="mode-option-label">Dark</span>
-          </label>
-        </div>
-      </div>
-      </div>
   </div>
 
   <!-- ── Header row ── -->
@@ -1478,8 +1426,6 @@ function switchChamber(name) {
   document.getElementById('rep-prev').textContent  = `Prev ${data.repPrev}`;
   document.getElementById('rep-delta').textContent = data.repDelta;
 
-  // Update chamber dropdown label
-  document.getElementById('chamberLabel').textContent = data.title.replace('U.S ', '');
 
   // Clear dots layer and rebuild
   while (dotsLayer.firstChild) dotsLayer.removeChild(dotsLayer.firstChild);
@@ -1533,56 +1479,43 @@ function toggleFact(id) {
   btn.setAttribute('aria-expanded', isOpen);
 }
 
-const chamberDropdown = document.getElementById('chamberToggle');
-const chamberSelectedBtn = document.getElementById('chamberSelected');
+function movePill(pill, btn, container) {
+  const cRect = container.getBoundingClientRect();
+  const bRect = btn.getBoundingClientRect();
+  pill.style.left = (bRect.left - cRect.left) + 'px';
+  pill.style.width = bRect.width + 'px';
+}
 
-chamberSelectedBtn.addEventListener('click', e => {
-  e.stopPropagation();
-  const open = chamberDropdown.classList.toggle('open');
-  chamberSelectedBtn.setAttribute('aria-expanded', open);
-  if (open) { modeDropdown.classList.remove('open'); modeSelectedBtn.setAttribute('aria-expanded', 'false'); }
-});
+const chamberToggleEl = document.getElementById('chamberToggle');
+const chamberPill = document.getElementById('chamberPill');
 
-chamberDropdown.querySelectorAll('input[type="radio"]').forEach(radio => {
-  radio.addEventListener('change', () => {
-    switchChamber(radio.value);
-    chamberDropdown.classList.remove('open');
-    chamberSelectedBtn.setAttribute('aria-expanded', 'false');
+chamberToggleEl.querySelectorAll('.seg-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    chamberToggleEl.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    movePill(chamberPill, btn, chamberToggleEl);
+    switchChamber(btn.dataset.chamber);
   });
 });
 
-document.addEventListener('click', e => {
-  if (!chamberDropdown.contains(e.target)) {
-    chamberDropdown.classList.remove('open');
-    chamberSelectedBtn.setAttribute('aria-expanded', 'false');
-  }
-});
+const modeToggleEl = document.getElementById('modeToggle');
+const modePill = document.getElementById('modePill');
 
-const modeDropdown = document.getElementById('modeToggle');
-const modeSelectedBtn = document.getElementById('modeSelected');
-const modeLabelEl = document.getElementById('modeLabel');
-
-modeSelectedBtn.addEventListener('click', e => {
-  e.stopPropagation();
-  const open = modeDropdown.classList.toggle('open');
-  modeSelectedBtn.setAttribute('aria-expanded', open);
-});
-
-document.addEventListener('click', e => {
-  if (!modeDropdown.contains(e.target)) {
-    modeDropdown.classList.remove('open');
-    modeSelectedBtn.setAttribute('aria-expanded', 'false');
-  }
-});
-
-modeDropdown.querySelectorAll('input[type="radio"]').forEach(radio => {
-  radio.addEventListener('change', () => {
-    document.documentElement.dataset.mode = radio.value;
-    modeLabelEl.textContent = radio.value.charAt(0).toUpperCase() + radio.value.slice(1);
-    modeDropdown.classList.remove('open');
-    modeSelectedBtn.setAttribute('aria-expanded', 'false');
+modeToggleEl.querySelectorAll('.icon-toggle-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    modeToggleEl.querySelectorAll('.icon-toggle-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    movePill(modePill, btn, modeToggleEl);
+    document.documentElement.dataset.mode = btn.dataset.mode;
   });
 });
+
+setTimeout(() => {
+  const activeChBtn = chamberToggleEl.querySelector('.seg-btn.active');
+  if (activeChBtn) movePill(chamberPill, activeChBtn, chamberToggleEl);
+  const activeMdBtn = modeToggleEl.querySelector('.icon-toggle-btn.active');
+  if (activeMdBtn) movePill(modePill, activeMdBtn, modeToggleEl);
+}, 60);
 </script>
 </body>
 </html>
