@@ -201,23 +201,20 @@ body {
 .facts-icon-btn {
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
   background: var(--toggle-bg);
   border: 1px solid var(--toggle-border);
-  border-radius: 8px;
-  padding: 7px 12px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--toggle-text);
-  letter-spacing: 0.04em;
+  border-radius: 50%;
   cursor: pointer;
-  font-family: 'Inter', sans-serif;
+  color: var(--toggle-text);
   transition: background 0.2s, color 0.2s, border-color 0.3s;
-  white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
   outline: none;
+  flex-shrink: 0;
 }
-.facts-icon-btn i { font-size: 14px; }
+.facts-icon-btn i { font-size: 18px; }
 .facts-icon-btn:hover { background: var(--toggle-active-bg); opacity: 0.8; }
 .facts-icon-btn.is-active {
   background: var(--toggle-active-bg);
@@ -973,7 +970,7 @@ body {
       </div>
     </div>
       <div style="display:flex;gap:8px;align-items:center;">
-      <button class="facts-icon-btn" id="annotToggle" onclick="toggleAnnotations()" aria-label="Show congress facts"><i class="ti ti-info-circle" aria-hidden="true"></i>Facts</button>
+      <button class="facts-icon-btn" id="annotToggle" onclick="toggleAnnotations()" aria-label="Show congress facts"><i class="ti ti-info-circle" aria-hidden="true"></i></button>
       <div class="mode-dropdown" id="modeToggle">
         <button class="mode-selected" id="modeSelected" aria-haspopup="listbox" aria-expanded="false">
           <span class="mode-selected-label" id="modeLabel">Dynamic</span>
