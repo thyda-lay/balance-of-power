@@ -649,7 +649,7 @@ body {
 .annotation-toggle:hover { opacity: 1; }
 .annotation-toggle.is-hidden { opacity: 0.25; }
 
-.annotation { visibility: hidden; opacity: 0; pointer-events: none; transition: opacity 0.25s, visibility 0.25s; }
+.annotation { visibility: hidden; opacity: 0; pointer-events: none; transition: opacity 0.5s ease, visibility 0.5s, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
 .annotations-visible .annotation { visibility: visible; opacity: 1; pointer-events: auto; }
 
 
@@ -862,6 +862,14 @@ body {
   .annotation-col-left { order: 1; }
   .annotation-right { order: 3; }
   .annotation { width: 320px; }
+
+  /* Directional slide: left cards offset left, right card offset right */
+  .annotation-left { transform: translateX(-32px); }
+  .annotation-right { transform: translateX(32px); }
+  /* Bottom-left card staggers in slightly after top-left */
+  .annotation-left-bottom { transition-delay: 0.1s; }
+  .annotations-visible .annotation-left,
+  .annotations-visible .annotation-right { transform: translateX(0); }
 }
 
 @media (max-width: 1379px) {
