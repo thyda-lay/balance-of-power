@@ -196,7 +196,7 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
-  animation: fade-down 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: fade-down 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .facts-icon-btn {
@@ -268,7 +268,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: fade-up 0.5s ease both 0.08s;
+  animation: fade-up 0.8s ease both 0.15s;
 }
 
 .page-title {
@@ -565,7 +565,7 @@ body {
   overflow: hidden;
   cursor: pointer;
   transition: background 0.3s, border-color 0.3s;
-  animation: card-enter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: card-enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) both 0.1s;
 }
 
 .senate-card:hover { opacity: 0.95; }
@@ -584,7 +584,7 @@ body {
   justify-content: center;
   align-items: flex-start;
   position: relative;
-  animation: fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both 0.32s;
+  animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both 0.6s;
 }
 
 .card-title-group {
@@ -659,7 +659,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: fade-up 0.5s ease both 0.38s;
+  animation: fade-up 0.8s ease both 0.75s;
 }
 
 .arc-wrap {
@@ -680,7 +680,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  animation: scale-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both 0.58s;
+  animation: scale-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both 1.05s;
 }
 
 .tally-badge.pop { animation: badge-pop 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
@@ -713,7 +713,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  animation: fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both 0.52s;
+  animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both 0.95s;
 }
 
 .party-name {
@@ -764,7 +764,7 @@ body {
   gap: 16px;
   justify-content: center;
   padding: 4px 0;
-  animation: fade-up 0.35s ease both 0.62s;
+  animation: fade-up 0.6s ease both 1.15s;
 }
 
 .legend-item {
@@ -796,7 +796,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  animation: fade-up 0.4s ease both 0.2s;
+  animation: fade-up 0.6s ease both 0.4s;
 }
 
 .card-top-banner img {
@@ -818,7 +818,7 @@ body {
   letter-spacing: 0;
   color: #f2f2f2;
   font-family: 'TT Norms Pro', Inter, sans-serif;
-  animation: chyron-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both 0.65s;
+  animation: chyron-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both 1.2s;
   flex-shrink: 0;
 }
 
@@ -829,7 +829,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 32px;
-  animation: fade-up 0.4s ease both 0.8s;
+  animation: fade-up 0.6s ease both 1.4s;
 }
 
 .nav-btn {
@@ -1463,7 +1463,7 @@ function switchChamber(name) {
 }
 
 document.getElementById('senate-card').addEventListener('click', play);
-setTimeout(play, 400);
+setTimeout(play, 750);
 
 // ─────────────────────────────────────────────────────────────
 // MODE TOGGLE
