@@ -196,6 +196,7 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
+  animation: fade-down 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .facts-icon-btn {
@@ -267,7 +268,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: fade-up 0.5s ease both;
+  animation: fade-up 0.5s ease both 0.08s;
 }
 
 .page-title {
@@ -528,11 +529,30 @@ body {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+@keyframes fade-down {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes chyron-up {
+  from { transform: translateY(110%); }
+  to   { transform: translateY(0); }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.75); }
+  to   { opacity: 1; transform: scale(1); }
+}
 @keyframes badge-pop {
   0%   { transform: scale(1); }
   35%  { transform: scale(1.12); }
   70%  { transform: scale(0.96); }
   100% { transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .toggle-row, .page-header, .senate-card, .card-top-banner,
+  .card-header, .arc-section, .data-display .party-col,
+  .data-display .tally-col, .legend, .estimates-banner, .nav-buttons {
+    animation: none !important;
+  }
 }
 
 /* ── Senate card ── */
@@ -545,7 +565,7 @@ body {
   overflow: hidden;
   cursor: pointer;
   transition: background 0.3s, border-color 0.3s;
-  animation: card-enter 0.6s cubic-bezier(0.22, 1, 0.36, 1) both 0.1s;
+  animation: card-enter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .senate-card:hover { opacity: 0.95; }
@@ -564,6 +584,7 @@ body {
   justify-content: center;
   align-items: flex-start;
   position: relative;
+  animation: fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both 0.32s;
 }
 
 .card-title-group {
@@ -638,6 +659,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: fade-up 0.5s ease both 0.38s;
 }
 
 .arc-wrap {
@@ -658,6 +680,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  animation: scale-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both 0.58s;
 }
 
 .tally-badge.pop { animation: badge-pop 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
@@ -690,6 +713,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 4px;
+  animation: fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both 0.52s;
 }
 
 .party-name {
@@ -740,6 +764,7 @@ body {
   gap: 16px;
   justify-content: center;
   padding: 4px 0;
+  animation: fade-up 0.35s ease both 0.62s;
 }
 
 .legend-item {
@@ -771,6 +796,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  animation: fade-up 0.4s ease both 0.2s;
 }
 
 .card-top-banner img {
@@ -792,6 +818,7 @@ body {
   letter-spacing: 0;
   color: #f2f2f2;
   font-family: 'TT Norms Pro', Inter, sans-serif;
+  animation: chyron-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both 0.65s;
   flex-shrink: 0;
 }
 
@@ -802,6 +829,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 32px;
+  animation: fade-up 0.4s ease both 0.8s;
 }
 
 .nav-btn {
