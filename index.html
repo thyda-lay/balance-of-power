@@ -691,17 +691,27 @@ body {
 
 .tally-badge {
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  padding: 8px 12px;
+  padding: 7px 14px;
   min-width: 80px;
-  font-size: 12px;
-  font-weight: 700;
   font-family: 'TT Norms Pro', Inter, sans-serif;
   color: #fff;
   white-space: nowrap;
   background: #0a0ae9;
+  gap: 1px;
+}
+.tally-badge .badge-party {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  opacity: 0.75;
+}
+.tally-badge .badge-stat {
+  font-size: 12px;
+  font-weight: 700;
 }
 
 /* ── Data display ── */
@@ -1070,7 +1080,7 @@ body {
             </div>
           </div>
           <div class="tally-col">
-            <div class="tally-badge" id="tally-badge">Dem. +7 Past 51</div>
+            <div class="tally-badge" id="tally-badge"><span class="badge-party">DEM</span><span class="badge-stat">+7 Past 51</span></div>
           </div>
           <div class="party-col">
             <span class="party-name rep">Republican</span>
@@ -1457,7 +1467,8 @@ function switchChamber(name) {
   document.getElementById('card-subtitle').innerHTML = data.subtitle;
   document.getElementById('threshold-label').textContent = data.threshold;
   const badge = document.getElementById('tally-badge');
-  badge.textContent = `Dem. +${data.dem - data.threshold} Past ${data.threshold}`;
+  const majority = data.dem > data.rep ? 'DEM' : 'REP';
+  badge.innerHTML = `<span class="badge-party">${majority}</span><span class="badge-stat">+${Math.abs((majority === 'DEM' ? data.dem : data.rep) - data.threshold)} Past ${data.threshold}</span>`;
   badge.classList.remove('pop');
   void badge.offsetWidth;
   badge.classList.add('pop');
