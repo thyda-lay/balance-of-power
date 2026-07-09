@@ -1552,6 +1552,25 @@ setTimeout(() => {
   const activeMdBtn = modeToggleEl.querySelector('.icon-toggle-btn.active');
   if (activeMdBtn) movePill(modePill, activeMdBtn, modeToggleEl);
 }, 60);
+
+// Clear JS-set inline styles when crossing the responsive breakpoint,
+// so the annotation scroll row doesn't get stuck as display:flex at wide widths.
+let _lastWide = window.innerWidth >= 1380;
+window.addEventListener('resize', () => {
+  const isWide = window.innerWidth >= 1380;
+  if (isWide === _lastWide) return;
+  _lastWide = isWide;
+  const row = document.querySelector('.annotation-scroll-row');
+  const annotations = document.querySelectorAll('.annotation');
+  if (isWide) {
+    row.style.cssText = '';
+    annotations.forEach(c => { c.style.cssText = ''; });
+  } else {
+    const visible = document.querySelector('.main').classList.contains('annotations-visible');
+    row.style.display = visible ? 'flex' : 'none';
+    row.style.opacity = visible ? '1' : '0';
+  }
+});
 </script>
 </body>
 </html>
