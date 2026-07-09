@@ -800,7 +800,7 @@ body {
 }
 
 .card-top-banner img {
-  height: 12px;
+  height: clamp(12px, 1.5vw, 18px);
   width: auto;
   max-width: 315px;
   display: block;
@@ -851,7 +851,6 @@ body {
 
 @media (min-width: 1021px) {
   .tally-badge { font-size: 16px; }
-  .card-top-banner img { height: 18px; }
 }
 
 /* ── Responsive ── */
