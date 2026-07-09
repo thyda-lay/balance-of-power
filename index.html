@@ -667,6 +667,8 @@ body {
 .arc-wrap {
   position: relative;
   width: 100%;
+  padding: 0 8px;
+  box-sizing: border-box;
 }
 
 .arc-svg {
@@ -1017,7 +1019,7 @@ body {
         <!-- Arc -->
         <div class="arc-section">
           <div class="arc-wrap">
-            <svg id="senate-svg" class="arc-svg" viewBox="-45 -198 560 346">
+            <svg id="senate-svg" class="arc-svg" viewBox="-55 -198 580 346">
               <defs>
                 <filter id="sf" x="-80%" y="-80%" width="260%" height="260%">
                   <feDropShadow dx="0" dy="1" stdDeviation="0.8" flood-color="rgba(0,0,0,0.28)"/>
@@ -1334,9 +1336,9 @@ function generateArcDots(cx, cy, rowRadii, seatsPerRow) {
   return dots;
 }
 
-const H_CX = 236, H_CY = 128, H_R = 5.5;
+const H_CX = 236, H_CY = 128, H_R = 4.5;
 const H_DEM = 265, H_IND = 2, H_REP = 168;
-const H_ROW_RADII     = [ 90, 108, 126, 144, 162, 180, 198, 216, 234, 252];
+const H_ROW_RADII     = [ 88, 109, 130, 151, 172, 193, 214, 235, 256, 277];
 // Exactly 1 odd-seat row (65) → ceil sums = 218, floor sums = 217
 const H_SEATS_PER_ROW = [ 22,  28,  32,  36,  42,  46,  50,  54,  60,  65];
 const H_DOTS = generateArcDots(H_CX, H_CY, H_ROW_RADII, H_SEATS_PER_ROW)
